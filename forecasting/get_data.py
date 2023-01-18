@@ -6,24 +6,24 @@ class Data:
     """Description will be later ... maybe"""
 
     @staticmethod
-    def read_historical_data(folder_path):
+    def read_historical_data(source):
         historical_data = pd.read_excel(
-            folder_path,
+            source,
             sheet_name='historical_data')  # Historical cost and sales data
         historical_data.rename(columns={'Номенклатура': 'nomenclature'}, inplace=True)
         return historical_data
 
     @staticmethod
-    def read_current_balances_data(folder_path):
+    def read_current_balances_data(source):
         current_balances_data = pd.read_excel(
-            folder_path,
+            source,
             sheet_name='current_balances')  # Information from the inventory and orders report
         return current_balances_data
 
     @staticmethod
-    def read_current_orders_data(folder_path):
+    def read_current_orders_data(source):
         current_orders = pd.read_excel(
-            folder_path,
+            source,
             sheet_name='current_orders')  # Information about current orders
         order_numbers = list(int(i) for i in current_orders['ЗП'].unique())
         nomenclature_name = current_orders['Номенклатура'].unique()
@@ -57,6 +57,7 @@ class Data:
         self.__historical_data = self.read_historical_data(self.__source)
         self.__current_balances_data = self.read_current_balances_data(self.__source)
         self.__current_orders_data = self.read_current_orders_data(self.__source)
+        self.__nomenclatures = self.__current_balances_data['Номенклатура'].unique()
 
     def get_data(self):
         return self.__historical_data
