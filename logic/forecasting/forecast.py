@@ -1,12 +1,9 @@
-import datetime as dt
-import numpy as np
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error, r2_score
+from forecasting.analysis import get_linear_regression_info
 from settings import *
 
 
 class Forecast:
-    """Description will be later ... maybe"""
+    """A class designed to predict purchases for a specific nomenclature"""
 
     __DELIVERY_TIME = DELIVERY_TIME
     __NECESSARY_STOCK = NECESSARY_STOCK
@@ -18,29 +15,22 @@ class Forecast:
     def __init__(self, nomenclature):
         self.nomenclature = nomenclature
 
-    def get_linear_equation_info(self) -> dict:
-        x = self.nomenclature.get_historical_data()
-        y = self.nomenclature.get_historical_data()
-        regression_model = LinearRegression()    # model initialization
-        regression_model.fit(x, y)    # fit the data(train the model)
-        y_predicted = regression_model.predict(x)    # predict
+    def set_linear_regression_info(self):
+        x = self.nomenclature.get_historical_data()['costs']
+        y = self.nomenclature.get_historical_data()['costs']
+        self.nomenclature.linear_regression_info = get_linear_regression_info(x, y)
 
-        result = {
-            'a': regression_model.coef_[0][0],
-            'b': regression_model.intercept_[0],
-            'rmse': mean_squared_error(y, y_predicted),   # Root mean squared error of the model
-            'r2_score': r2_score(y, y_predicted),
-            'len_y': len(y)
-        }
-        return result
+    def get_forecasting_method(self):
+        pass
 
     def make_forecast(self):
-        # linear_equation_info = self.get_linear_equation_info()
+        self.set_linear_regression_info()
+
 
         forecasting_costs = []
         forecasting_sales = []
         forecasting_stocks = []
 
-        self.nomenclature.set_forecasting_costs(forecasting_costs)
-        self.nomenclature.set_forecasting_sales(forecasting_sales)
-        self.nomenclature.set_forecasting_stocks(forecasting_stocks)
+        self.nomenclature.forecasting_costs = forecasting_costs
+        self.nomenclature.forecasting_sales = forecasting_sales
+        self.nomenclature.forecasting_stocks = forecasting_stocks

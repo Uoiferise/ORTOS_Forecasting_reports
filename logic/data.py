@@ -4,7 +4,7 @@ from nomenclature import Nomenclature
 
 
 class Data:
-    """Description will be later ... maybe"""
+    """A class designed to read and process input data"""
 
     @staticmethod
     def read_historical_data(source: str):
