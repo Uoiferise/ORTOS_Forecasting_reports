@@ -35,12 +35,12 @@ class Forecast:
         return result
 
     def make_forecast(self):
-        linear_equation_info = self.get_linear_equation_info(self.nomenclature)
+        # linear_equation_info = self.get_linear_equation_info()
 
         forecasting_costs = []
         forecasting_sales = []
         forecasting_stocks = []
 
-        self.nomenclature.set_forecasting_cost(forecasting_costs)
-        self.nomenclature.set_forecasting_cost(forecasting_sales)
-        self.nomenclature.set_forecasting_cost(forecasting_stocks)
+        self.nomenclature.set_forecasting_costs(forecasting_costs)
+        self.nomenclature.set_forecasting_sales(forecasting_sales)
+        self.nomenclature.set_forecasting_stocks(forecasting_stocks)

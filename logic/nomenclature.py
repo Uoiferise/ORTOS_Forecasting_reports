@@ -1,24 +1,28 @@
+from forecasting import Forecast
+
+
 class Nomenclature:
     """Description will be later ... maybe"""
 
-    __NOMENCLATURES = {}
-
-    @classmethod
-    def get_all_nomenclatures(cls):
-        return cls.__NOMENCLATURES
-
-    def __init__(self, name: str, historical_data: list):
+    def __init__(self, name: str, data):
         self.__name = name
-        self.__historical_data = historical_data
-        self.__NOMENCLATURES[self.__name] = self
+        self.__historical_data = data.get_historical_data(self.__name)
+        self.__current_stock = data.get_current_balances_stock_data(self.__name)
+
+        # making forecast for this nomenclature
+        forecast = Forecast(nomenclature=self)
+        forecast.make_forecast()
 
         self.__forecasting_method = None
         self.__forecasting_costs = None
         self.__forecasting_sales = None
         self.__forecasting_stocks = None
 
-    def get_historical_data(self, period):
-        return self.__historical_data[-period::]
+    def get_historical_data(self):
+        return self.__historical_data
+
+    def get_current_stock(self):
+        return self.__current_stock
 
     def set_forecasting_method(self):
         self.__forecasting_method = 'LR'
