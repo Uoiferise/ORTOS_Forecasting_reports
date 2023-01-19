@@ -1,4 +1,4 @@
-from forecasting import Forecast
+from forecast import Forecast
 
 
 class Nomenclature:

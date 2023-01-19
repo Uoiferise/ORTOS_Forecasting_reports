@@ -1,4 +1,4 @@
-from tests import run_test
+from logic.tests import run_test
 
 
 # class Report:

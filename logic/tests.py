@@ -1,5 +1,5 @@
 from settings import *
-from get_data import Data
+from data import Data
 import pandas as pd
 from data import *
 import os
