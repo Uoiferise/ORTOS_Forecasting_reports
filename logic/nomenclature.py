@@ -9,10 +9,11 @@ class Nomenclature:
 
         self.__historical_data = data.get_historical_data(self.__name)
         self.__current_stock = data.get_current_balances_stock_data(self.__name)
-        self.__get_current_orders = []
+        self.__current_orders = []
 
         # making forecast for this nomenclature
         forecast = Forecast(self)
+        self.linear_regression_info = dict()
         forecast.make_forecast()    # creating new attributes
 
     def get_historical_data(self):
@@ -22,4 +23,4 @@ class Nomenclature:
         return self.__current_stock
 
     def get_current_orders(self):
-        return self.__get_current_orders
+        return self.__current_orders

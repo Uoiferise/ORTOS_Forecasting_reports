@@ -1,22 +1,5 @@
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error, r2_score
 import datetime
 from dateutil.relativedelta import *
-
-
-def get_linear_regression_info(x, y) -> dict:
-    regression_model = LinearRegression()  # model initialization
-    regression_model.fit(x, y)  # fit the data(train the model)
-    y_predicted = regression_model.predict(x)  # predict
-
-    result = {
-        'a': regression_model.coef_[0][0],
-        'b': regression_model.intercept_[0],
-        'rmse': mean_squared_error(y, y_predicted),  # Root mean squared error of the model
-        'r2_score': r2_score(y, y_predicted),
-        'len_y': len(y),
-    }
-    return result
 
 
 def stock_forecasting(period, delivery_time, cost, sale, stock_0,
