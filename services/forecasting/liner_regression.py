@@ -21,7 +21,7 @@ def get_linear_regression_info(x, y) -> dict:
     }
     if len(x) > 10:
         regression_model = LinearRegression()  # model initialization
-        regression_model.fit(x, y)  # fit the data(train the model)
+        regression_model.fit(x, y)  # fit the input_data(train the model)
         y_predicted = regression_model.predict(x)  # predict
 
         result = {

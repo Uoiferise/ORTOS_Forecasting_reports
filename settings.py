@@ -1,5 +1,5 @@
 # project settings
-FOLDER_PATH = 'data/data.xlsx'
+FOLDER_PATH = 'input_data/input_data.xlsx'
 
 # for class Forecast
 DELIVERY_TIME = 3   # months
