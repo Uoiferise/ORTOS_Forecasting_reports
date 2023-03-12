@@ -1,4 +1,4 @@
-from forecasting.forecast import Forecast
+from forecasting.forecast_manager import Forecast
 
 
 class Nomenclature:

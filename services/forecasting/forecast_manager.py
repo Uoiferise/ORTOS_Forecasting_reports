@@ -1,9 +1,9 @@
-from forecasting.liner_regression import get_linear_regression_info, preparing_data
-from forecasting.cost_forecasting import cost_forecasting
+from functions.liner_regression import get_linear_regression_info, preparing_data
+from functions.cost_forecasting import cost_forecasting
 from settings import *
 
 
-class Forecast:
+class ForecastManager:
     """A class designed to predict purchases for a specific nomenclature"""
 
     __DELIVERY_TIME = DELIVERY_TIME
